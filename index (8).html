@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming Klub | Real vaqt hisoblagich</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at 20% 30%, #0b0e1a, #03060b);
+            min-height: 100vh;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 1400px;
+            width: 100%;
+        }
+
+        /* HEADER */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 1rem 2rem;
+            background: rgba(20, 25, 45, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 60px;
+            border: 1px solid rgba(0, 255, 200, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
+            margin-bottom: 2.5rem;
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #00f5d4, #00b4d8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0, 245, 212, 0.3);
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: #00f5d4;
+            -webkit-text-fill-color: initial;
+        }
+
+        .stats-badge {
+            background: rgba(0, 245, 212, 0.1);
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+            border: 1px solid rgba(0, 245, 212, 0.3);
+            color: #b0e5da;
+            font-weight: 500;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stats-badge span {
+            color: #00f5d4;
+            font-weight: 700;
+        }
+
+        /* ASOSIY GRID - 2 XONA */
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        @media (max-width: 900px) {
+            .rooms-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .room-card {
+            background: rgba(12, 18, 34, 0.75);
+            backdrop-filter: blur(16px);
+            border-radius: 40px;
+            padding: 1.8rem 2rem;
+            border: 1px solid rgba(0, 255, 200, 0.12);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            transition: 0.3s;
+        }
+
+        .room-card:hover {
+            border-color: rgba(0, 255, 200, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 245, 212, 0.05);
+        }
+
+        .room-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.8rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid rgba(0, 255, 200, 0.1);
+        }
+
+        .room-header h2 {
+            font-size: 1.8rem;
+            color: #e0f2fe;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .room-header h2 i {
+            color: #00f5d4;
+            font-size: 1.6rem;
+        }
+
+        .room-status {
+            background: rgba(0, 245, 212, 0.1);
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            color: #8ae2d0;
+            border: 1px solid rgba(0, 245, 212, 0.15);
+        }
+
+        .room-status i {
+            margin-right: 6px;
+        }
+
+        /* FORMA */
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: #b0c7e7;
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+            font-size: 0.9rem;
+        }
+
+        .form-group label i {
+            margin-right: 8px;
+            color: #00f5d4;
+            width: 20px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem 1.2rem;
+            background: rgba(0, 20, 40, 0.6);
+            border: 1px solid #2a3a5a;
+            border-radius: 30px;
+            color: #f0f9ff;
+            font-size: 0.95rem;
+            transition: 0.3s;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: #00f5d4;
+            box-shadow: 0 0 20px rgba(0, 245, 212, 0.15);
+            background: rgba(0, 30, 50, 0.7);
+        }
+
+        .form-group input::placeholder {
+            color: #5a6f8a;
+        }
+
+        .btn-bron {
+            background: linear-gradient(145deg, #00d4b0, #009f8b);
+            border: none;
+            padding: 0.9rem 1.8rem;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1rem;
+            color: #0b0e1a;
+            width: 100%;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 8px 24px rgba(0, 245, 212, 0.2);
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 0.5rem;
+        }
+
+        .btn-bron:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 32px rgba(0, 245, 212, 0.35);
+            background: linear-gradient(145deg, #00e6c0, #00b89c);
+        }
+
+        .btn-bron:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-start-timer {
+            background: linear-gradient(145deg, #f5a623, #d48c1a);
+            box-shadow: 0 8px 24px rgba(245, 166, 35, 0.25);
+        }
+
+        .btn-start-timer:hover {
+            background: linear-gradient(145deg, #ffb83d, #e09920);
+            box-shadow: 0 12px 32px rgba(245, 166, 35, 0.4);
+        }
+
+        .btn-stop-timer {
+            background: linear-gradient(145deg, #ff5e7c, #d63a5a);
+            box-shadow: 0 8px 24px rgba(255, 94, 124, 0.25);
+        }
+
+        .btn-stop-timer:hover {
+            background: linear-gradient(145deg, #ff7a94, #e04a6a);
+            box-shadow: 0 12px 32px rgba(255, 94, 124, 0.4);
+        }
+
+        .timer-display {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 60px;
+            padding: 0.5rem 1.5rem;
+            text-align: center;
+            margin: 1rem 0;
+            border: 1px solid rgba(0, 255, 200, 0.1);
+        }
+
+        .timer-display .time {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #00f5d4;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 2px;
+        }
+
+        .timer-display .price {
+            font-size: 1.1rem;
+            color: #ffd700;
+            margin-top: 0.2rem;
+        }
+
+        .timer-display .price i {
+            margin-right: 6px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        .btn-group .btn-bron {
+            flex: 1;
+            min-width: 120px;
+        }
+
+        /* UMUMIY STATISTIKA */
+        .stats-section {
+            background: rgba(12, 18, 34, 0.75);
+            backdrop-filter: blur(16px);
+            border-radius: 40px;
+            padding: 1.8rem 2.5rem;
+            border: 1px solid rgba(0, 255, 200, 0.12);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            margin-bottom: 2rem;
+        }
+
+        .stats-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stats-header h2 {
+            color: #e0f2fe;
+            font-size: 1.5rem;
+        }
+
+        .stats-header h2 i {
+            color: #ffd700;
+            margin-right: 10px;
+        }
+
+        .stats-summary {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            background: rgba(0, 20, 40, 0.4);
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+            border-left: 3px solid #00f5d4;
+        }
+
+        .stat-item .label {
+            color: #7b96b5;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-item .value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #e0f2fe;
+        }
+
+        .stat-item .value i {
+            color: #ffd700;
+            margin-right: 6px;
+        }
+
+        .stat-item.room1-stat { border-left-color: #00b4d8; }
+        .stat-item.room2-stat { border-left-color: #f5a623; }
+
+        /* RO'YXAT */
+        .list-container {
+            margin-top: 1.5rem;
+            max-height: 350px;
+            overflow-y: auto;
+        }
+
+        .list-container::-webkit-scrollbar {
+            width: 5px;
+        }
+        .list-container::-webkit-scrollbar-track {
+            background: #0b1a2a;
+            border-radius: 10px;
+        }
+        .list-container::-webkit-scrollbar-thumb {
+            background: #00f5d4;
+            border-radius: 10px;
+        }
+
+        .list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.7rem 0.8rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            color: #c7d9f0;
+            font-size: 0.9rem;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .list-item .room-tag {
+            font-size: 0.7rem;
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            font-weight: 600;
+        }
+
+        .room-tag.room1 { background: rgba(0, 180, 216, 0.2); color: #00b4d8; border: 1px solid rgba(0, 180, 216, 0.3); }
+        .room-tag.room2 { background: rgba(245, 166, 35, 0.2); color: #f5a623; border: 1px solid rgba(245, 166, 35, 0.3); }
+
+        .list-item .info {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .list-item .time-info {
+            color: #8ae2d0;
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #b0c7e7;
+            padding: 0.6rem 1.8rem;
+            border-radius: 40px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-danger {
+            border-color: #ff5e7c;
+            color: #ff5e7c;
+        }
+
+        .btn-danger:hover {
+            background: rgba(255, 94, 124, 0.1);
+        }
+
+        .btn-print {
+            border-color: #00f5d4;
+            color: #00f5d4;
+        }
+
+        .btn-print:hover {
+            background: rgba(0, 245, 212, 0.08);
+        }
+
+        .footer-note {
+            text-align: center;
+            color: #2b405a;
+            margin-top: 2rem;
+            font-size: 0.85rem;
+        }
+
+        .footer-note i {
+            color: #00f5d4;
+        }
+
+        /* Qo'shimcha takliflar */
+        .offers-bar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 15px;
+            padding: 1rem 1.5rem;
+            background: rgba(0, 255, 200, 0.03);
+            border-radius: 60px;
+            border: 1px dashed rgba(0, 255, 200, 0.15);
+            margin-top: 1.5rem;
+        }
+
+        .offers-bar span {
+            color: #b4d0ea;
+            font-weight: 300;
+        }
+
+        .offer-tag {
+            background: rgba(0, 245, 212, 0.06);
+            padding: 0.3rem 1.2rem;
+            border-radius: 60px;
+            border: 1px solid rgba(0, 245, 212, 0.1);
+            font-size: 0.85rem;
+            color: #b0e5da;
+        }
+
+        .earnings-total {
+            color: #ffd700 !important;
+            font-weight: 600;
+        }
+
+        .status-active {
+            color: #ffd700;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="logo">
+            <h1><i class="fas fa-gamepad"></i> GAMING KLUB</h1>
+        </div>
+        <div class="stats-badge">
+            <i class="fas fa-users"></i> Bugun: <span id="totalBookingsToday">0</span> bron
+            <i class="fas fa-coins" style="margin-left:15px;"></i> Daromad: <span id="totalEarnings">0</span> so‘m
+        </div>
+    </div>
+
+    <!-- 2 XONA -->
+    <div class="rooms-grid" id="roomsGrid">
+        <!-- 1-XONA -->
+        <div class="room-card" data-room="1">
+            <div class="room-header">
+                <h2><i class="fas fa-desktop"></i> 1-xona</h2>
+                <div class="room-status" id="room1Status"><i class="fas fa-circle" style="color:#00f5d4;"></i> Bo‘sh</div>
+            </div>
+            
+            <!-- Timer display -->
+            <div class="timer-display" id="timer1Display">
+                <div class="time" id="timer1Time">00:00</div>
+                <div class="price" id="timer1Price"><i class="fas fa-coins"></i> 0 so‘m</div>
+            </div>
+
+            <form class="room-form" data-room="1">
+                <div class="form-group">
+                    <label><i class="fas fa-user"></i> Ism Familya</label>
+                    <input type="text" class="room-name" placeholder="Masalan: Ali Valiyev" required>
+                </div>
+                
+                <div class="btn-group">
+                    <button type="button" class="btn-bron btn-start-timer start-timer-btn">
+                        <i class="fas fa-play"></i> O‘yinni boshlash
+                    </button>
+                    <button type="button" class="btn-bron btn-stop-timer stop-timer-btn" disabled>
+                        <i class="fas fa-stop"></i> To‘xtatish
+                    </button>
+                </div>
+            </form>
+            <div style="margin-top: 0.8rem; font-size:0.85rem; color:#4f688b; display:flex; gap:15px; flex-wrap:wrap;">
+                <span><i class="fas fa-coins" style="color:#ffd700;"></i> Narx: 20 000 so‘m/soat</span>
+                <span><i class="fas fa-clock"></i> O‘ynagan vaqtiga to‘lov</span>
+            </div>
+        </div>
+
+        <!-- 2-XONA -->
+        <div class="room-card" data-room="2">
+            <div class="room-header">
+                <h2><i class="fas fa-desktop"></i> 2-xona</h2>
+                <div class="room-status" id="room2Status"><i class="fas fa-circle" style="color:#00f5d4;"></i> Bo‘sh</div>
+            </div>
+            
+            <!-- Timer display -->
+            <div class="timer-display" id="timer2Display">
+                <div class="time" id="timer2Time">00:00</div>
+                <div class="price" id="timer2Price"><i class="fas fa-coins"></i> 0 so‘m</div>
+            </div>
+
+            <form class="room-form" data-room="2">
+                <div class="form-group">
+                    <label><i class="fas fa-user"></i> Ism Familya</label>
+                    <input type="text" class="room-name" placeholder="Masalan: Sara Karimova" required>
+                </div>
+                
+                <div class="btn-group">
+                    <button type="button" class="btn-bron btn-start-timer start-timer-btn">
+                        <i class="fas fa-play"></i> O‘yinni boshlash
+                    </button>
+                    <button type="button" class="btn-bron btn-stop-timer stop-timer-btn" disabled>
+                        <i class="fas fa-stop"></i> To‘xtatish
+                    </button>
+                </div>
+            </form>
+            <div style="margin-top: 0.8rem; font-size:0.85rem; color:#4f688b; display:flex; gap:15px; flex-wrap:wrap;">
+                <span><i class="fas fa-coins" style="color:#ffd700;"></i> Narx: 20 000 so‘m/soat</span>
+                <span><i class="fas fa-clock"></i> O‘ynagan vaqtiga to‘lov</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- STATISTIKA VA RO'YXAT -->
+    <div class="stats-section">
+        <div class="stats-header">
+            <h2><i class="fas fa-trophy"></i> Kunlik natijalar</h2>
+            <div class="stats-summary">
+                <div class="stat-item room1-stat">
+                    <div class="label">1-xona daromad</div>
+                    <div class="value" id="room1Earnings"><i class="fas fa-crown"></i> 0</div>
+                </div>
+                <div class="stat-item room2-stat">
+                    <div class="label">2-xona daromad</div>
+                    <div class="value" id="room2Earnings"><i class="fas fa-crown"></i> 0</div>
+                </div>
+                <div class="stat-item">
+                    <div class="label">Jami daromad</div>
+                    <div class="value" id="totalEarningsStat"><i class="fas fa-coins"></i> 0</div>
+                </div>
+            </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <span style="color:#8aa3c9; font-weight:500;"><i class="fas fa-list-ul"></i> Barcha bronlar</span>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <button class="btn-secondary btn-print" id="printBtn"><i class="fas fa-print"></i> Chop etish</button>
+                <button class="btn-secondary btn-danger" id="clearAllBtn"><i class="fas fa-trash-alt"></i> Tozalash</button>
+            </div>
+        </div>
+
+        <div class="list-container" id="bookingsList">
+            <div class="list-item" style="color:#4f688b; justify-content:center; font-style:italic;">
+                <i class="fas fa-info-circle"></i> Hali bron yo‘q
+            </div>
+        </div>
+
+        <!-- QO'SHIMCHA TAKLIFLAR -->
+        <div class="offers-bar">
+            <span><i class="fas fa-gift"></i> Takliflar:</span>
+            <span class="offer-tag"><i class="fas fa-tag"></i> 2+ soat — 10% chegirma</span>
+            <span class="offer-tag"><i class="fas fa-tag"></i> 3+ soat — bepul ichimlik</span>
+            <span class="offer-tag"><i class="fas fa-tag"></i> 5 bron — 1 bepul</span>
+            <span class="offer-tag earnings-total"><i class="fas fa-clock"></i> O‘ynagan vaqtiga to‘lov</span>
+        </div>
+    </div>
+
+    <div class="footer-note">
+        <i class="fas fa-gamepad"></i> Gaming Klub · 1-xona va 2-xona · Narx: 20 000 so‘m/soat
+    </div>
+</div>
+
+<script>
+    (function() {
+        // ===== STATE =====
+        let bookings = [];
+        let roomStatus = { 1: 'free', 2: 'free' };
+        
+        // Timer holati
+        let timers = {
+            1: { 
+                active: false, 
+                startTime: null, 
+                elapsedSeconds: 0,
+                intervalId: null,
+                name: '',
+                totalEarned: 0
+            },
+            2: { 
+                active: false, 
+                startTime: null, 
+                elapsedSeconds: 0,
+                intervalId: null,
+                name: '',
+                totalEarned: 0
+            }
+        };
+
+        // Narx: 20 000 so'm/soat => 333.33 so'm/daqiqa, 5.56 so'm/sekund
+        const PRICE_PER_HOUR = 20000;
+        const PRICE_PER_SECOND = PRICE_PER_HOUR / 3600;
+
+        // DOM
+        const bookingsList = document.getElementById('bookingsList');
+        const totalBookingsToday = document.getElementById('totalBookingsToday');
+        const totalEarnings = document.getElementById('totalEarnings');
+        const totalEarningsStat = document.getElementById('totalEarningsStat');
+        const room1Earnings = document.getElementById('room1Earnings');
+        const room2Earnings = document.getElementById('room2Earnings');
+        const room1Status = document.getElementById('room1Status');
+        const room2Status = document.getElementById('room2Status');
+
+        const printBtn = document.getElementById('printBtn');
+        const clearAllBtn = document.getElementById('clearAllBtn');
+
+        // ===== Yordamchi funksiyalar =====
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        }
+
+        function calculatePrice(seconds) {
+            return Math.round(seconds * PRICE_PER_SECOND);
+        }
+
+        function getRoomName(room) {
+            return room === 1 ? '1-xona' : '2-xona';
+        }
+
+        // ===== TIMER FUNKSIYALARI =====
+        function updateTimerDisplay(room) {
+            const timer = timers[room];
+            const timeEl = document.getElementById(`timer${room}Time`);
+            const priceEl = document.getElementById(`timer${room}Price`);
+            
+            if (timer.active) {
+                const currentTime = Date.now();
+                const elapsed = (currentTime - timer.startTime) / 1000 + timer.elapsedSeconds;
+                const displaySeconds = Math.floor(elapsed);
+                const price = calculatePrice(displaySeconds);
+                timeEl.textContent = formatTime(displaySeconds);
+                priceEl.innerHTML = `<i class="fas fa-coins"></i> ${price} so‘m`;
+            } else {
+                timeEl.textContent = formatTime(timer.elapsedSeconds);
+                const price = calculatePrice(timer.elapsedSeconds);
+                priceEl.innerHTML = `<i class="fas fa-coins"></i> ${price} so‘m`;
+            }
+        }
+
+        function startTimer(room, playerName) {
+            if (timers[room].active) {
+                alert(`${getRoomName(room)} allaqachon ishlayapti!`);
+                return false;
+            }
+
+            // Xona bandligini tekshirish
+            const isOccupied = bookings.some(b => b.room === room && b.active);
+            if (isOccupied) {
+                alert(`${getRoomName(room)} hozirda band!`);
+                return false;
+            }
+
+            const name = playerName.trim();
+            if (!name) {
+                alert('Iltimos, ism-familyani kiriting!');
+                return false;
+            }
+
+            // Timerni ishga tushirish
+            const timer = timers[room];
+            timer.active = true;
+            timer.startTime = Date.now();
+            timer.name = name;
+            timer.elapsedSeconds = 0;
+
+            // Interval
+            if (timer.intervalId) clearInterval(timer.intervalId);
+            timer.intervalId = setInterval(() => {
+                updateTimerDisplay(room);
+            }, 1000);
+
+            // Statusni yangilash
+            updateTimerDisplay(room);
+            updateRoomStatus();
+
+            // Tugmalar
+            const form = document.querySelector(`.room-card[data-room="${room}"] .room-form`);
+            form.querySelector('.start-timer-btn').disabled = true;
+            form.querySelector('.stop-timer-btn').disabled = false;
+            form.querySelector('.room-name').disabled = true;
+
+            return true;
+        }
+
+        function stopTimer(room) {
+            const timer = timers[room];
+            if (!timer.active) {
+                alert(`Timer ${getRoomName(room)} ishlamayapti!`);
+                return;
+            }
+
+            // Vaqtni hisoblash
+            const currentTime = Date.now();
+            const elapsedTotal = (currentTime - timer.startTime) / 1000 + timer.elapsedSeconds;
+            const finalSeconds = Math.floor(elapsedTotal);
+            const price = calculatePrice(finalSeconds);
+
+            if (finalSeconds < 10) {
+                alert(`O‘yin juda qisqa (${finalSeconds} sekund). Minimal 10 sekund bo‘lishi kerak.`);
+                return;
+            }
+
+            // Timerni to'xtatish
+            timer.active = false;
+            timer.elapsedSeconds = finalSeconds;
+            if (timer.intervalId) {
+                clearInterval(timer.intervalId);
+                timer.intervalId = null;
+            }
+
+            // Booking yaratish
+            const newBooking = {
+                id: Date.now() + Math.random(),
+                room: room,
+                name: timer.name,
+                phone: 'N/A',
+                sessionTime: 'Hozir',
+                duration: finalSeconds, // sekundlarda
+                active: false, // tugagan
+                startNow: true,
+                price: price,
+                timestamp: new Date().toISOString()
+            };
+
+            bookings.push(newBooking);
+            
+            // Timerni reset qilish (lekin elapsedSeconds saqlab qolamiz ko'rsatish uchun)
+            // Lekin keyingi boshlash uchun reset qilamiz
+            timer.elapsedSeconds = 0;
+            timer.name = '';
+            updateTimerDisplay(room);
+
+            // UI yangilash
+            const form = document.querySelector(`.room-card[data-room="${room}"] .room-form`);
+            form.querySelector('.start-timer-btn').disabled = false;
+            form.querySelector('.stop-timer-btn').disabled = true;
+            form.querySelector('.room-name').disabled = false;
+            form.querySelector('.room-name').value = '';
+
+            updateRoomStatus();
+            renderStats();
+            renderBookingsList();
+
+            // Natijani ko'rsatish
+            alert(`✅ ${getRoomName(room)} \nO‘yinchi: ${newBooking.name}\nVaqt: ${formatTime(finalSeconds)}\nTo‘lov: ${price} so‘m`);
+        }
+
+        // ===== UI YANGILASH =====
+        function updateRoomStatus() {
+            // Xona bandligini tekshirish (aktiv timer yoki aktiv bron)
+            const room1Active = timers[1].active || bookings.some(b => b.room === 1 && b.active);
+            const room2Active = timers[2].active || bookings.some(b => b.room === 2 && b.active);
+
+            roomStatus[1] = room1Active ? 'occupied' : 'free';
+            roomStatus[2] = room2Active ? 'occupied' : 'free';
+
+            room1Status.innerHTML = roomStatus[1] === 'free' 
+                ? '<i class="fas fa-circle" style="color:#00f5d4;"></i> Bo‘sh' 
+                : '<i class="fas fa-circle" style="color:#ff5e7c;" class="status-active"></i> Band';
+            room2Status.innerHTML = roomStatus[2] === 'free' 
+                ? '<i class="fas fa-circle" style="color:#00f5d4;"></i> Bo‘sh' 
+                : '<i class="fas fa-circle" style="color:#ff5e7c;" class="status-active"></i> Band';
+        }
+
+        function renderStats() {
+            const total = bookings.reduce((sum, b) => sum + (b.price || calculatePrice(b.duration)), 0);
+            const r1 = bookings.filter(b => b.room === 1).reduce((sum, b) => sum + (b.price || calculatePrice(b.duration)), 0);
+            const r2 = bookings.filter(b => b.room === 2).reduce((sum, b) => sum + (b.price || calculatePrice(b.duration)), 0);
+
+            totalEarnings.textContent = total;
+            totalEarningsStat.innerHTML = `<i class="fas fa-coins"></i> ${total}`;
+            room1Earnings.innerHTML = `<i class="fas fa-crown"></i> ${r1}`;
+            room2Earnings.innerHTML = `<i class="fas fa-crown"></i> ${r2}`;
+            totalBookingsToday.textContent = bookings.length;
+        }
+
+        function renderBookingsList() {
+            if (bookings.length === 0) {
+                bookingsList.innerHTML = `
+                    <div class="list-item" style="color:#4f688b; justify-content:center; font-style:italic;">
+                        <i class="fas fa-info-circle"></i> Hali bron yo‘q
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '';
+            bookings.slice().reverse().forEach((b) => {
+                const roomClass = b.room === 1 ? 'room1' : 'room2';
+                const roomName = getRoomName(b.room);
+                const duration = b.duration;
+                const price = b.price || calculatePrice(duration);
+                const timeStr = duration >= 60 ? 
+                    `${Math.floor(duration/60)} min ${duration%60} sek` : 
+                    `${duration} sek`;
+
+                html += `
+                    <div class="list-item">
+                        <div class="info">
+                            <span class="room-tag ${roomClass}">${roomName}</span>
+                            <strong>${b.name}</strong>
+                            <span style="color:#6f8db0; font-size:0.8rem;">${b.phone}</span>
+                        </div>
+                        <div class="time-info">
+                            ${timeStr} 
+                            <span style="color:#ffd700; margin-left:8px;">${price} so‘m</span>
+                            <span style="font-size:0.7rem; color:#5a7a9a; margin-left:6px;">✅ Tugagan</span>
+                        </div>
+                    </div>
+                `;
+            });
+            bookingsList.innerHTML = html;
+        }
+
+        function renderAll() {
+            updateRoomStatus();
+            renderStats();
+            renderBookingsList();
+        }
+
+        // ===== EVENT LISTENERLAR =====
+        document.querySelectorAll('.room-card').forEach(card => {
+            const room = parseInt(card.dataset.room, 10);
+            const form = card.querySelector('.room-form');
+            const startBtn = form.querySelector('.start-timer-btn');
+            const stopBtn = form.querySelector('.stop-timer-btn');
+            const nameInput = form.querySelector('.room-name');
+
+            // Boshlash
+            startBtn.addEventListener('click', function() {
+                const name = nameInput.value.trim();
+                const success = startTimer(room, name);
+                if (success) {
+                    // Inputni o'chirib qo'yamiz (disabled qilindi)
+                }
+            });
+
+            // To'xtatish
+            stopBtn.addEventListener('click', function() {
+                stopTimer(room);
+            });
+        });
+
+        // ===== CHOP ETISH =====
+        printBtn.addEventListener('click', function() {
+            if (bookings.length === 0) {
+                alert('Chop etish uchun bronlar yo‘q.');
+                return;
+            }
+
+            let printContent = `
+                <html>
+                <head><title>Gaming Klub - Hisobot</title>
+                <style>
+                    body { font-family: 'Segoe UI', sans-serif; background: #0b0e1a; color: #e0f2fe; padding: 2rem; }
+                    h1 { color: #00f5d4; border-bottom: 2px solid #00f5d4; }
+                    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+                    th { background: #00f5d4; color: #0b0e1a; padding: 10px; text-align: left; }
+                    td { padding: 10px; border-bottom: 1px solid #2a3a5a; }
+                    .room1 { color: #00b4d8; }
+                    .room2 { color: #f5a623; }
+                    .footer { margin-top: 30px; color: #4f688b; }
+                </style>
+                </head>
+                <body>
+                <h1><i class="fas fa-gamepad"></i> Gaming Klub · Hisobot</h1>
+                <p>Sana: ${new Date().toLocaleDateString()}</p>
+                <table>
+                    <tr><th>#</th><th>Xona</th><th>Ism</th><th>Vaqt</th><th>Narx</th></tr>
+            `;
+
+            bookings.forEach((b, i) => {
+                const roomName = getRoomName(b.room);
+                const price = b.price || calculatePrice(b.duration);
+                const timeStr = b.duration >= 60 ? 
+                    `${Math.floor(b.duration/60)} min ${b.duration%60} sek` : 
+                    `${b.duration} sek`;
+                printContent += `
+                    <tr>
+                        <td>${i+1}</td>
+                        <td class="${b.room === 1 ? 'room1' : 'room2'}">${roomName}</td>
+                        <td>${b.name}</td>
+                        <td>${timeStr}</td>
+                        <td>${price} so‘m</td>
+                    </tr>
+                `;
+            });
+
+            const total = bookings.reduce((sum, b) => sum + (b.price || calculatePrice(b.duration)), 0);
+            printContent += `
+                </table>
+                <div class="footer">Jami bronlar: ${bookings.length} | Umumiy daromad: ${total} so‘m</div>
+                <p style="margin-top:20px; color:#5a7a9a;">© Gaming Klub — Narx: 20 000 so‘m/soat</p>
+                </body></html>
+            `;
+
+            const win = window.open('', '_blank', 'width=900,height=600');
+            win.document.write(printContent);
+            win.document.close();
+            win.focus();
+            win.print();
+        });
+
+        // ===== TOZALASH =====
+        clearAllBtn.addEventListener('click', function() {
+            if (bookings.length === 0) return;
+            if (confirm('Barcha bronlarni o‘chirib tashlamoqchimisiz?')) {
+                bookings = [];
+                renderAll();
+            }
+        });
+
+        // ===== DEMO MA'LUMOTLAR =====
+        function addDemoData() {
+            if (bookings.length === 0) {
+                bookings.push({
+                    id: 1,
+                    room: 1,
+                    name: "Shoxrux Karimov",
+                    phone: "N/A",
+                    sessionTime: "Hozir",
+                    duration: 120,
+                    active: false,
+                    startNow: true,
+                    price: 6667,
+                    timestamp: new Date().toISOString()
+                });
+                bookings.push({
+                    id: 2,
+                    room: 2,
+                    name: "Dilnoza Abdullayeva",
+                    phone: "N/A",
+                    sessionTime: "Hozir",
+                    duration: 45,
+                    active: false,
+                    startNow: true,
+                    price: 2500,
+                    timestamp: new Date().toISOString()
+                });
+                renderAll();
+            }
+        }
+        addDemoData();
+
+        // Har sekundda timerlarni yangilash (agar active bo'lsa)
+        setInterval(() => {
+            if (timers[1].active) updateTimerDisplay(1);
+            if (timers[2].active) updateTimerDisplay(2);
+        }, 1000);
+
+        // Har 10 sekundda statistikani yangilash (agar o'zgarish bo'lsa)
+        setInterval(() => {
+            renderStats();
+            renderBookingsList();
+        }, 10000);
+
+    })();
+</script>
+
+</body>
+</html>
